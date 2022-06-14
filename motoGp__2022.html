@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>MotoGp in progress 2022 </title>
+   <meta charset="UTF-8"> 
+   <meta name="description" content="Motogp: avanzamento piloti nel campionato 2022">
+   <meta name="author" content="Huunim">
+   <link rel="icon" sizes="72x72" href="https://css.motogp.com/w2015/img/icons/motogp_72x72.png?version=1654166925">
+   <script>
+    //----------posiz piloti
+     
+     var posizX=[0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0];
+
+   //-----------------------    
+     
+     var WSchermo=1366;
+     var velo =50;
+     var pixMov =6;  // indica di qti pix devono muovere per ogni punto
+     var dopoGp=1;   
+     var tutti=[];   // tabella
+     var corseFatte = 0; // cambiare dopo ogni gp
+     var ultimoId=0;
+     var v25esimo=1;   // 25esimo punto di ogni gp
+     var listaNomiInseriti="";  
+     var tuttiGp=["","QATAR","INDONESIA","ARGENTINA","AMERICA","PORTOGALLO","JEREZ","FRANCIA","MUGELLO","CATALOGNA","GERMANIA","OLANDA","FINLANDIA","G.BRETAGNA","AUSTRIA","MISANO","ARAGON","GIAPPONE","THAILANDIA","AUSTRALIA","MALESIA","VALENCIA"];
+
+    function scomponiTabella(){
+    tutti =document.getElementById("tabella").innerText.split("|");
+    for(i=1; i< tutti.length; i++){
+        if(tutti[i].indexOf("*") > -1){ corseFatte = i-2; break;}
+     }
+    
+    // popola sel1
+    let step = corseFatte+2;
+    
+    for(i=1; i< tutti.length; i += step){     
+      
+      ultimoId++;
+    }       
+    WSchermo= screen.width;
+}
+
+    function primogp(){
+          document.getElementById("qualeGp").innerText = tuttiGp[dopoGp];
+          document.getElementById("start").disabled= true;
+          
+        }
+
+    function startOk(){
+     // prendere prossimo pilotaDaMuovere 
+      for(i=1; i <= ultimoId; i++){
+        let punti = tutti[(i-1)*(corseFatte+2)+1 + dopoGp];
+        punti = (punti*pixMov)/26;
+        posizX[i] = punti + posizX[i];
+     
+     document.getElementById("pil_" +i).style.left = posizX[i]+"px";
+
+
+     }   
+    
+       v25esimo++;
+       allungaPista();
+     
+     if( v25esimo < 26){
+              setTimeout(startOk, velo);
+           }else{
+       // prossimo gp
+          
+           v25esimo=1;
+           dopoGp++;
+           if(dopoGp > corseFatte){  return;} 
+
+           document.getElementById("qualeGp").innerText = tuttiGp[dopoGp];
+           if(document.getElementById("opzOrdina").checked){ordina();}
+           setTimeout(startOk, 200);
+       }     
+    }
+
+    function ordina(){
+       let possibili_Y=[10,30,50,70,90,110,130,150,170,190,210,230,250,270,290,310,330,350,370,390,410,430,450,470];
+       let el;
+       let conto=0;
+       for(i=1; i< posizX.length; i++){
+          el= posizX[i];
+          for(j =1;j<posizX.length; j++){
+             if(i != j){
+              if(posizX[j] > el){conto++;} 
+              else if(posizX[j] == el && j < i){conto++;} 
+            }
+          }
+         document.getElementById("pil_" + i).style.top = possibili_Y[conto]+"px";
+         conto=0;
+       }
+    }
+function allungaPista(){
+     let maxo = Math.max.apply(Math, posizX);     
+     maxo = Math.ceil(maxo);
+     maxo += 100;
+     document.getElementById("Campo").style.width =maxo+"px";
+     if(maxo > WSchermo){ 
+        maxo = maxo - WSchermo
+        window.scrollBy(maxo, 0);
+        maxo = maxo  + 300;
+        document.getElementById("qualeGp").style.left= maxo + "px";
+    }
+}
+
+function cambioVel(){
+  velo = document.getElementById("slider").value;
+
+}
+
+
+
+   </script>
+   <style>
+    
+    .immagPiloti{position:absolute; width:90px; height:20px; font-size:10px; border: solid 1px; border-radius: 4px 15px 15px 4px; margin: 2px;}
+    #Campo{position: Absolute; left: 1px; top: 30px; width: 1220px; height: 500px; background-color: RGB(150, 155, 165); border: solid 1px; }
+    #start{position: Absolute; left: 1px; top: 1px; width: 60px; height: 28px; background-color: RGB(238, 33, 33); border-radius: 10px; font-size: 12px; color: RGB(33, 238, 238); }
+
+#tabella{position: absolute; top: 1px; left: 1px; width: 100px;display: none;}
+#qualeGp{position:absolute; top:210px; left: 500px; font-size: 30px;font-family:serif;opacity: 0.5; color:red;}
+#slider{position:absolute; top:3px; left: 380px;}
+   </style>
+  </head>
+
+  <body onload="scomponiTabella()">
+    <p id="tabella">
+1|DOVIZIOSO Andrea|2|0|0|1|5|0|0|0|0|*1*
+2|ESPARGARO Aleix|13|7|25|5|16|16|16|16|11|*2*
+3|MARQUEZ Alex|0|3|1|0|9|3|2|2|6|*3*
+4|BAGNAIA Francesco|0|1|11|11|8|25|0|25|0|*4*
+5|BASTIANINI Enea|25|5|6|25|0|8|25|0|0|*5*
+6|BINDER Brad|20|8|10|4|0|6|8|9|8|*6*
+7|BEZZECCHI Marco|0|0|7|0|1|7|4|11|0|*7*
+8|BINDER Darryn|0|6|0|0|0|0|0|0|4|*8*
+9|DI GIANNANTONIO Fabio|0|0|0|0|0|0|3|5|0|*9*
+10|MIR Joan|10|10|13|13|0|10|0|0|13|*10*
+11|MARINI Luca|3|2|5|0|4|0|7|10|10|*11*
+12|MARTIN Jorge|0|0|20|8|0|0|0|3|20|*12*
+13|MARQUEZ Marc|11|0|0|10|10|13|10|6|0|*13*
+14|MILLER Jack|0|13|2|16|0|11|20|1|2|*14*
+15|MORBIDELLI Franco|5|9|0|0|3|1|1|0|3|*15*
+16|NAKAGAMI Takaaki|6|0|4|2|0|9|9|8|0|*16*
+17|OLIVEIRA Miguel|0|25|3|0|11|4|0|7|7|*17*
+18|ESPARGARO Pol|16|4|0|3|7|5|5|0|0|*18*
+19|QUARTARARO Fabio|7|20|8|9|25|20|13|20|25|*19*
+20|RINS Alex|9|11|16|20|13|0|0|0|0|*20*
+21|VIÑALES Maverick|4|0|9|6|6|2|6|4|9|*21*
+22|ZARCO Johann|8|16|0|7|20|0|11|13|16|*22*
+23|GARDNER Remy|1|0|0|0|2|0|0|0|5|*23*
+24|FERNANDEZ Raul|0|0|0|0|0|0|0|0|1|*24*
+    </p>
+
+    <button id="start" onmousedown="startOk()" onmouseup="primogp()">START</button>
+    <input type="checkbox" style="position:absolute; top:1px; left: 110px;" id="opzOrdina">
+    <label style="position:absolute; top:3px; left: 130px; font-size: 12px;">Ordina dopo ogni gp &nbsp;&nbsp;&nbsp; Cambia velocit&agrave; </label>
+     <input type="range" id="slider" min="20" max="200" value="50" onInput="cambioVel()">
+    <div id="Campo">
+                               <label id="qualeGp"></label>
+      <div id="pil_19" style="top:10px; background-color:blue; color:white;" class="immagPiloti">F. Quartararo</div>
+      <div id="pil_2" style="top:30px; background-color:green" class="immagPiloti">A.Espargaro</div>
+      <div id="pil_5" style="top:50px; background-color:grey" class="immagPiloti">E. Bastianini</div>
+      <div id="pil_22" style="top:70px; background-color:crimson" class="immagPiloti">J. Zarco</div>
+      <div id="pil_4" style="top:90px; background-color:red" class="immagPiloti">F. Bagnaia</div>
+      <div id="pil_6" style="top:110px; background-color:darkorange" class="immagPiloti">B. Binder</div>
+      <div id="pil_20" style="top:130px; background-color:deepskyblue" class="immagPiloti">A. Rins</div>
+      <div id="pil_10" style="top:150px; background-color:deepskyblue" class="immagPiloti">J. Mir</div>
+      <div id="pil_14" style="top:170px; background-color:red" class="immagPiloti">J. Miller</div>
+      <div id="pil_13" style="top:190px; background-color:orange" class="immagPiloti">M. Marquez</div>
+      <div id="pil_17" style="top:210px; background-color:darkorange" class="immagPiloti">M. Oliveira</div>
+      <div id="pil_12" style="top:230px; background-color:crimson" class="immagPiloti">J. Martin</div> 
+      <div id="pil_21" style="top:250px; background-color:green" class="immagPiloti">M. Vinales</div>
+      <div id="pil_11" style="top:270px; background-color:yellow" class="immagPiloti">L. Marini</div> 
+      <div id="pil_18" style="top:290px; background-color:orange" class="immagPiloti">P. Espargaro</div>
+      <div id="pil_16" style="top:310px; background-color:tomato" class="immagPiloti">T. Nakagami</div>
+      <div id="pil_7" style="top:330px; background-color:yellow" class="immagPiloti">Bezzecchi</div>
+      <div id="pil_3" style="top:350px; background-color:seagreen" class="immagPiloti">A. Marquez</div>
+      <div id="pil_15" style="top:370px; background-color:blue; color:white;" class="immagPiloti">F. Morbidelli</div>    
+      <div id="pil_8" style="top:390px; background-color:navy; color: white" class="immagPiloti">D. Binder</div>
+      <div id="pil_23" style="top:410px; background-color:orangered" class="immagPiloti">R. Gardner</div>
+      <div id="pil_9" style="top:430px; background-color:grey" class="immagPiloti">DiGiannantonio</div>
+      <div id="pil_1" style="top:450px; background-color:navy; color: white" class="immagPiloti">A. Dovizioso</div> 
+      <div id="pil_24" style="top:470px; background-color:orangered" class="immagPiloti">R. Fernandez</div>
+
+    </div>
+   
+     
+ 
+</body></html>
