@@ -20,7 +20,6 @@
      var corseFatte = 0; // cambiare dopo ogni gp
      var ultimoId=0;
      var v25esimo=1;   // 25esimo punto di ogni gp
-     var listaNomiInseriti="";  
      var WSchermo=1366;
      var tuttiGp=["","BAHRAIN","EMILIA R.","PORTOGALLO","SPAGNA","MONACO","AZERBAIJAN","FRANCIA","STIRIA","AUSTRIA","GR. BRETAGNA","UNGHERIA","BELGIO","OLANDA","ITALIA","RUSSIA","TURCHIA","AUSTIN","MESSICO","BRASILE","QATAR", "ARABIA S.","ABU DAHBI"];
 
@@ -65,7 +64,7 @@
            v25esimo=1;
            dopoGp++;
            if(dopoGp > corseFatte){ 
-  
+              if(document.getElementById("opzOrdina").checked){ordina();}
              return;} // f i n e
           
            document.getElementById("qualeGp").innerText = tuttiGp[dopoGp];
