@@ -20,8 +20,7 @@
      var tutti=[];   // tabella
      var corseFatte = 0; // cambiare dopo ogni gp
      var ultimoId=0;
-     var v25esimo=1;   // 25esimo punto di ogni gp
-     var listaNomiInseriti="";  
+     var v25esimo=1;   // 25esimo punto di ogni gp  
      var tuttiGp=["","BAHRAIN","ARABIA","AUSTRALIA","IMOLA","MIAMI","SPAGNA","MONACO","AZERBAIJAN","CANADA","GR. BRETAGNA","AUSTRIA","FRANCIA","UNGHERIA","BELGIO","OLANDA","ITALIA","SINGAPORE","GIAPPONE","AUSTIN","MESSICO","BRASILE", "ABU DAHBI"];
 
     function scomponiTabella(){
@@ -67,7 +66,7 @@
            v25esimo=1;
            dopoGp++;
            if(dopoGp > corseFatte){ 
-             
+             if(document.getElementById("opzOrdina").checked){ordina();}
              return;} 
        
            
