@@ -1,10 +1,11 @@
 # GPProgress
-Shows the evolution of the f1 and motogp rankings in pure javascript.
+Mostra l' evoluzione delle classifiche di F1 e MotoGp in puro javascript.
 
-You can add the points after each gp, manually, in the page source in the 'tabella' element.
+E' possibile aggiungere i punti dopo ogni gp manualmente, modificando l' elemento'tabella' nel sorgente della pagina. 
 
-e.g .:  1 | VERSTAPPEN Max | 0 | 25 | 0 | 34 | 26 | 25 | 15 | * 1 *
+es .:  1 | VERSTAPPEN Max | 0 | 25 | 0 | 34 | 26 | 25 | 15 | * 1 *
+diventa 1 | VERSTAPPEN Max | 0 | 25 | 0 | 34 | 26 | 25 | 15 | 25 | * 1 *
 
-becomes 1 | VERSTAPPEN Max | 0 | 25 | 0 | 34 | 26 | 25 | 15 | 25 | * 1 *
+Ma cercheremo di tenere aggiornato questo repo dopo ogni evento.
+E' possibile reimplementare questi file html per visualizzare la progressione nella classifica di ogni sport.
 
-You can reimplement these html files to view the progression of any sport ranking.
