@@ -7,5 +7,6 @@ es .:  1 | VERSTAPPEN Max | 0 | 25 | 0 | 34 | 26 | 25 | 15 | * 1 *
 diventa 1 | VERSTAPPEN Max | 0 | 25 | 0 | 34 | 26 | 25 | 15 | 25 | * 1 *
 
 Ma cercheremo di tenere aggiornato questo repo dopo ogni evento.
+
 E' possibile reimplementare questi file html per visualizzare la progressione nella classifica di ogni sport.
 
