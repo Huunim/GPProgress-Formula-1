@@ -20,7 +20,8 @@
      var tutti=[];   // tabella
      var corseFatte = 0; // cambiare dopo ogni gp
      var ultimoId=0;
-     var v25esimo=1;   // 25esimo punto di ogni gp  
+     var PAUSA=false;
+     var v25esimo=1;   // 25esimo? punto di ogni gp
      var tuttiGp=["","BAHRAIN","ARABIA","AUSTRALIA","IMOLA","MIAMI","SPAGNA","MONACO","AZERBAIJAN","CANADA","GR. BRETAGNA","AUSTRIA","FRANCIA","UNGHERIA","BELGIO","OLANDA","ITALIA","SINGAPORE","GIAPPONE","AUSTIN","MESSICO","BRASILE", "ABU DAHBI"];
 
     function scomponiTabella(){
@@ -43,22 +44,18 @@
         }
 
     function startOk(){
-     // prendere prossimo pilotaDaMuovere 
+     
      for(i=1; i <= ultimoId; i++){
         let punti = tutti[(i-1)*(corseFatte+2)+1 + dopoGp];
         punti = (punti*pixMov)/26;
-        posizX[i] = punti + posizX[i];
-     
-     document.getElementById("pil_" +i).style.left = posizX[i]+"px";
-
-
+        posizX[i] = punti + posizX[i];     
+        document.getElementById("pil_" +i).style.left = posizX[i]+"px";
      }   
      
        v25esimo++;
        allungaPista();
      
-     if( v25esimo < 27){
-              
+     if( v25esimo < 27){              
               setTimeout(startOk, velo);
            }else{
        // prossimo gp
@@ -67,12 +64,14 @@
            dopoGp++;
            if(dopoGp > corseFatte){ 
              if(document.getElementById("opzOrdina").checked){ordina();}
-             return;} 
-       
+             document.getElementById("b_pausa").disabled =true;
+             return;}        //fine
            
-           document.getElementById("qualeGp").innerText = tuttiGp[dopoGp];
            if(document.getElementById("opzOrdina").checked){ordina();}
-           setTimeout(startOk, 200);
+           if(!PAUSA){
+              document.getElementById("qualeGp").innerText = tuttiGp[dopoGp];
+              setTimeout(startOk, 200);
+              }
        }     
     }
 
@@ -103,6 +102,8 @@ function allungaPista(){
         window.scrollBy(maxo, 0);
         maxo = maxo  + 300;
         document.getElementById("qualeGp").style.left= maxo + "px";
+        maxo = maxo - 90;
+        document.getElementById("buttonsLine").style.left= maxo + "px";
     }
 }
 
@@ -111,22 +112,13 @@ function cambioVel(){
 
 }
 
-/**
-    function riduci(){
-        // arretra tutti di 60 se un pilota supera 
-        let superato=false;
-        for(i=0; i < posizX.length; i++){
-            if(posizX[i] > 1030){ superato = true; break;}
+function pausa(){
+    PAUSA = !PAUSA;
+    if(PAUSA == false){ 
+       document.getElementById("qualeGp").innerText = tuttiGp[dopoGp];
+       startOk(); }
 
-          }
-        if(superato){
-          for(i=1; i < posizX.length; i++){
-              posizX[i] = posizX[i] -360;
-              document.getElementById("pil_" + i).style.left = posizX[i]+"px";
-         }     
-        }
-    }
-*/
+}
 
    </script>
    <style>
@@ -134,10 +126,10 @@ function cambioVel(){
     .immagPiloti{position:absolute; width:90px; height:20px; font-size:10px; border: solid 1px; border-radius: 4px 15px 15px 4px; margin: 2px;}
     #Campo{position: Absolute; left: 1px; top: 30px; width: 200px; height: 500px; background-color: RGB(150, 155, 165); border: solid 1px; }
     #start{position: Absolute; left: 1px; top: 1px; width: 60px; height: 28px; background-color: RGB(238, 33, 33); border-radius: 10px; font-size: 12px; color: RGB(33, 238, 238); }
-
+#buttonsLine{position: Absolute; left: 110px; top: 1px; width: 600px; height: 22px;}
 #tabella{position: absolute; top: 1px; left: 1px; width: 100px;display: none;}
 #qualeGp{position:absolute; top:210px; left: 500px; font-size: 30px;font-family:serif;opacity: 0.5; color:red;}
-#slider{position:absolute; top:3px; left: 380px;}
+
    </style>
   </head>
 
@@ -165,10 +157,13 @@ function cambioVel(){
 20|LATIFI Nicholas|0|0|0|0|0|0|0|0|0|*20*
     </p>
 
-    <button id="start" onclick="primogp()">START</button>
-    <input type="checkbox" style="position:absolute; top:1px; left: 110px;" id="opzOrdina">
-    <label style="position:absolute; top:3px; left: 130px; font-size: 12px;">Ordina dopo ogni gp &nbsp;&nbsp;&nbsp; Cambia velocit&agrave; </label>
+    <button id="start"  onclick="primogp()">START</button>
+  <div id="buttonsLine" >
+    <input type="checkbox" id="opzOrdina">
+    <label style="font-size: 12px;">Ordina dopo ogni gp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cambia velocit&agrave; </label>
     <input type="range" id="slider" min="20" max="200" value="50" onInput="cambioVel()">
+    &nbsp;&nbsp;&nbsp;&nbsp;<button id="b_pausa" onclick="pausa()" style ="height:20px; background-color:orange" >Pausa</button>
+  </div>
     <div id="Campo">
                                <label id="qualeGp"></label>
       <div id="pil_1" style="top:10px; background-color:purple; color:white;" class="immagPiloti">M. Verstappen</div>
@@ -196,8 +191,7 @@ function cambioVel(){
       <div id="pil_20" style="top:390px; background-color: mediumblue" class="immagPiloti">N. Latifi</div>
       
 
-    </div> 
-    
+    </div>     
   
  
 </body></html>
