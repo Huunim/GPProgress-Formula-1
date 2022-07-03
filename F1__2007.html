@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>Formula 1 in progress 2007 </title>
+   <meta charset="UTF-8"> 
+   <meta name="description" content="F1: avanzamento piloti nel campionato 2007">
+   <meta name="author" content="Huunim">
+   <link rel="icon" sizes="72x72" href="https://www.formula1.com/etc/designs/fom-website/icon128x128.png">
+   <script>
+    //----------posiz piloti
+     
+     var posizX=[0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0];
+
+   //-----------------------    
+     
+     var WSchermo=1366;
+     var velo =50;
+     var pixMov =10;  // indica di qti pix devono muovere per ogni punto
+     var dopoGp=1;   
+     var tutti=[];   // tabella
+     var corseFatte = 0; // cambiare dopo ogni gp
+     var ultimoId=0;
+     var PAUSA=false;
+     var v25esimo=1;   // 25esimo? punto di ogni gp
+     var tuttiGp=["","AUSTRALIA","MALESIA","BAHREIN","SPAGNA","MONACO","CANADA","INDIANAPOLIS","FRANCIA","GR.BRETAGNA","EUROPA","UNGHERIA","TURCHIA","ITALIA","BELGIO","GIAPPONE","CINA","BRASILE"];
+
+    function scomponiTabella(){
+    tutti =document.getElementById("tabella").innerText.split("|");
+    for(i=1; i< tutti.length; i++){
+        if(tutti[i].indexOf("*") > -1){ corseFatte = i-2; break;}
+     }
+    let step = corseFatte+2;
+    for(i=1; i< tutti.length; i += step){     
+       ultimoId++;
+    }       
+    WSchermo= screen.width;
+    
+}
+
+    function primogp(){
+          document.getElementById("qualeGp").innerText = tuttiGp[dopoGp];
+          document.getElementById("start").disabled= true;
+          startOk();
+        }
+
+    function startOk(){
+     
+     for(i=1; i <= ultimoId; i++){
+        let punti = tutti[(i-1)*(corseFatte+2)+1 + dopoGp];
+        punti = (punti*pixMov)/10;
+        posizX[i] = punti + posizX[i];     
+        document.getElementById("pil_" +i).style.left = posizX[i]+"px";
+     }   
+     
+       v25esimo++;
+       allungaPista();
+     
+     if( v25esimo < 11){              
+              setTimeout(startOk, velo);
+           }else{
+       // prossimo gp
+        
+           v25esimo=1;
+           dopoGp++;
+           if(dopoGp > corseFatte){ 
+             if(document.getElementById("opzOrdina").checked){ordina();}
+             document.getElementById("b_pausa").disabled =true;
+             return;}        //fine
+           
+           if(document.getElementById("opzOrdina").checked){ordina();}
+           if(!PAUSA){
+              document.getElementById("qualeGp").innerText = tuttiGp[dopoGp];
+              setTimeout(startOk, 200);
+              }
+       }     
+    }
+
+    function ordina(){
+       let possibili_Y=[10,30,50,70,90,110,130,150,170,190,210,230,250,270,290,310,330,350,370,390];
+       let el;
+       let conto=0;
+       for(i=1; i< posizX.length; i++){
+          el= posizX[i];
+          for(j =1;j<posizX.length; j++){
+             if(i != j){
+              if(posizX[j] > el){conto++;} 
+              else if(posizX[j] == el && j < i){conto++;} 
+            }
+          }
+         document.getElementById("pil_" + i).style.top = possibili_Y[conto]+"px";
+         conto=0;
+       }
+    }
+
+function allungaPista(){
+     let maxo = Math.max.apply(Math, posizX);     
+     maxo = Math.ceil(maxo);
+     maxo += 100;
+     document.getElementById("Campo").style.width =maxo+"px";
+     if(maxo > WSchermo){ 
+        maxo = maxo - WSchermo
+        window.scrollBy(maxo, 0);
+        maxo = maxo  + 300;
+        document.getElementById("qualeGp").style.left= maxo + "px";
+        maxo = maxo - 90;
+        document.getElementById("buttonsLine").style.left= maxo + "px";
+    }
+}
+
+function cambioVel(){
+  velo = document.getElementById("slider").value;
+
+}
+
+function pausa(){
+    PAUSA = !PAUSA;
+    if(PAUSA == false){ 
+       document.getElementById("qualeGp").innerText = tuttiGp[dopoGp];
+       startOk(); }
+
+}
+
+   </script>
+   <style>
+    
+    .immagPiloti{position:absolute; width:90px; height:20px; font-size:10px; border: solid 1px; border-radius: 4px 15px 15px 4px; margin: 2px;}
+    #Campo{position: Absolute; left: 1px; top: 30px; width: 200px; height: 500px; background-color: RGB(150, 155, 165); border: solid 1px; }
+    #start{position: Absolute; left: 1px; top: 1px; width: 60px; height: 28px; background-color: RGB(238, 33, 33); border-radius: 10px; font-size: 12px; color: RGB(33, 238, 238); }
+#buttonsLine{position: Absolute; left: 110px; top: 1px; width: 600px; height: 22px;}
+#tabella{position: absolute; top: 1px; left: 1px; width: 100px;display: none;}
+#qualeGp{position:absolute; top:210px; left: 500px; font-size: 30px;font-family:serif;opacity: 0.5; color:red;}
+
+   </style>
+  </head>
+
+  <body onload="scomponiTabella()">
+    <p id="tabella">
+1|RAIKKONEN Kimi|10|6|6|0|1|4|5|10|10|0|8|8|6|10|6|10|10|*1*
+2|HAMILTON Lewis|6|8|8|8|8|10|10|6|6|0|10|4|8|5|10|0|2|*2*
+3|ALONSO Fernando|8|10|4|6|10|2|8|2|8|10|5|6|10|6|0|8|6|*3*
+4|MASSA Felipe|3|4|10|10|6|0|6|8|4|8|0|10|0|8|3|6|8|*4*
+5|HEIDFELD Nick|5|5|5|0|3|8|0|4|3|3|6|5|5|4|0|2|3|*5*
+6|KUBICA Robert|0|0|2|3|4|0|0|5|5|2|4|1|4|0|2|0|4|*6*
+7|KOVALAINEN Heikki|0|1|0|2|0|5|4|0|2|1|1|3|2|1|8|0|0|*7*
+8|FISICHELLA Giancarlo|4|3|1|0|5|0|0|3|1|0|0|0|0|0|4|0|0|*8*
+9|ROSBERG Nico|2|0|0|3|0|0|0|0|0|0|2|2|3|3|0|0|5|*9*
+10|COULTHARD David|0|0|0|4|0|0|0|0|0|4|0|0|0|0|5|1|0|*10*
+11|WURZ Alexander|0|0|0|0|2|6|0|0|0|5|0|0|0|0|0|0|0|*11*
+12|WEBBER Mark|0|0|0|0|0|0|2|0|0|6|0|0|0|2|0|0|0|*12*
+13|TRULLI Jarno|0|2|2|0|0|0|3|0|0|0|0|0|0|0|0|0|1|*13*
+14|VETTEL Sebastian|0|0|0|0|0|0|1|0|0|0|0|0|0|0|0|5|0|*14*
+15|BUTTON Jenson|0|0|0|0|0|0|0|1|0|0|0|0|1|0|0|4|0|*15*
+16|SCHUMACHER Ralf|1|0|0|0|0|1|0|0|0|0|3|0|0|0|0|0|0|*16*
+17|SATO Takuma|0|0|0|1|0|3|0|0|0|0|0|0|0|0|0|0|0|*17*
+18|LIUZZI Vitantonio|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|3|0|*18*
+19|SUTIL Adrian|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|0|0|*19*
+20|BARRICHELLO Rubens|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|*20*
+    </p>
+
+    <button id="start"  onclick="primogp()">START</button>
+  <div id="buttonsLine" >
+    <input type="checkbox" id="opzOrdina">
+    <label style="font-size: 12px;">Ordina dopo ogni gp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cambia velocit&agrave; </label>
+    <input type="range" id="slider" min="20" max="200" value="50" onInput="cambioVel()">
+    &nbsp;&nbsp;&nbsp;&nbsp;<button id="b_pausa" onclick="pausa()" style ="height:20px; background-color:orange" >Pausa</button>
+  </div>
+    <div id="Campo">
+                               <label id="qualeGp"></label>
+      <div id="pil_1" style="top:10px; background-color:red;" class="immagPiloti">K. Raikkonen</div>
+      <div id="pil_2" style="top:30px; background-color:grey;" class="immagPiloti">L. Hamilton</div>
+      <div id="pil_3" style="top:50px; background-color:grey" class="immagPiloti">F. Alonso</div>      
+      <div id="pil_4" style="top:70px; background-color:red" class="immagPiloti">F. Massa</div>
+      <div id="pil_5" style="top:90px; background-color:whitesmoke" class="immagPiloti">N. Heidfeld</div>     
+      <div id="pil_6" style="top:110px; background-color:whitesmoke" class="immagPiloti">R. Kubica</div>
+      <div id="pil_7" style="top:130px; background-color:gold" class="immagPiloti">H. Kovalainen</div>
+      <div id="pil_8" style="top:150px; background-color:gold" class="immagPiloti">G. Fisichella</div>
+      <div id="pil_9" style="top:170px; background-color:steelblue" class="immagPiloti">N. Rosberg</div>
+      <div id="pil_10" style="top:190px; background-color:purple; color: white" class="immagPiloti">D. Coulthard</div>       
+      <div id="pil_11" style="top:210px; background-color:steelblue;" class="immagPiloti">A. Wurz</div>       
+      <div id="pil_12" style="top:230px; background-color:purple; color: white" class="immagPiloti">M. Webber</div>
+      <div id="pil_13" style="top:250px; background-color:lightcoral" class="immagPiloti">J. Trulli</div>
+      <div id="pil_14" style="top:270px; background-color:mediumorchid" class="immagPiloti">S. Vettel</div>
+      <div id="pil_15" style="top:290px; background-color:mediumaquamarine;" class="immagPiloti">J. Button</div>      
+      <div id="pil_16" style="top:310px; background-color:lightcoral" class="immagPiloti">R. Schumacher</div>
+      <div id="pil_17" style="top:330px; background-color:tomato" class="immagPiloti">T. Sato</div>
+      <div id="pil_18" style="top:350px; background-color:mediumorchid" class="immagPiloti">V. Liuzzi</div>
+      <div id="pil_19" style="top:370px; background-color:orange;" class="immagPiloti">A. Sutil</div>    
+      <div id="pil_20" style="top:390px; background-color: mediumaquamarine" class="immagPiloti">R. Barrichello</div>
+      
+
+    </div>     
+  
+ 
+</body></html>
