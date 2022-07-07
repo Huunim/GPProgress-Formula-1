@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Nuova competizione</title>
+<script>
+function crea(){
+let nuovo =document.getElementById("file").innerText;
+//------------------------------------------------------------
+let tx =document.getElementById("competizione").value;
+if(tx == ""){alert("Inserire tipo competizione"); return;}
+nuovo= nuovo.replace("[!-TIT]", tx);
+//------------------------------------------------------------
+tx =document.getElementById("anno").value;
+nuovo= nuovo.replace("[!-ANNO]", tx);
+//------------------------------------------------------------
+tx =document.getElementById("ico").value;
+if(tx != ""){nuovo= nuovo.replace("[!-ICON]", "<link rel='icon' href='"+ tx + "'>");}
+else{nuovo= nuovo.replace("[!-ICON]","");}
+//------------------------------------------------------------
+let gp=[];
+tx = document.getElementById("tuttigp").value;
+if(tx == ""){alert("Inserire i gp o  le gare"); return;}
+gp = tx.split("\n");
+tx ="";
+let numGp=0;
+for(i=0; i< gp.length; i++){
+ if(gp[i] != ""){
+   tx = tx + "'" + gp[i] + "'," ;
+   numGp++;
+  }
+}
+tx = tx.substring(0, tx.length -1);
+nuovo= nuovo.replace("[!-TUTTIGP]", tx);
+//-------------------------------------------------------------
+tx = document.getElementById("ppv").value;
+if(isNaN(tx)){ tx = "20";}
+let q = eval(tx);
+q++;
+nuovo= nuovo.replace("[!-PUNTI]", tx);
+nuovo= nuovo.replace("[!-PUNTI2]", q);
+//-------------------------------------------------------------
+// crea tabella, piloti, possibiliY, posizX--------------------
+let tabella=""; let piloti=""; let possibY=""; let posizX =""; let errori="";
+tx = document.getElementById("pilotis").value;
+if(tx == ""){alert("Inserire i piloti o i partecipanti"); return;}
+let righe = tx.split("\n");
+let parti=[]; let puntiPilota=[];
+let riga;
+let n=0;
+let P="";
+let topP=-10;
+let uguaglianzaGp=0; 
+for(i=0; i< righe.length; i++){
+ riga = righe[i];
+ if(riga != ""){
+    n++;
+    parti= riga.split(";");
+    if(parti.length < 3){ alert("Dati  piloti mancanti"); return;}    
+    puntiPilota = parti[2].split(" ");
+    // tutti devono avere stesso num. gp ( fatal! )
+    if(n == 1){ uguaglianzaGp= puntiPilota.length;}
+    else{ 
+           if(puntiPilota.length != uguaglianzaGp){alert("I piloti devono avere lo stesso numero di assegnazioni punti!"); return;}
+
+        }
+    // verif punti siano numeri
+    for(j=0; j< puntiPilota.length; j++){
+        if(isNaN(puntiPilota[j])){puntiPilota[j]=0; errori += parti[0] + " inseriti valori punti non numerici\n";}
+      }
+    P = puntiPilota.join("|");
+    tabella = tabella + n + "|" + parti[0] + "|" + P + "|*" + n + "*\n";
+//---
+    topP +=20;
+//---
+    piloti += "<div id='pil_" + n + "' style='top:" + topP + "px; background-color:" + parti[1] + ";' class='immagPiloti'>" + parti[0] + "</div>\n";
+//---
+   possibY += topP + ",";
+//---
+   posizX += "1.0,";
+  }
+}  // @@@@  fine ciclo  @@@@
+possibY = possibY.substring(0, possibY.length -1);
+posizX = posizX.substring(0, posizX.length -1);
+
+nuovo= nuovo.replace("[!-POSSIBILI_Y]", possibY);
+nuovo= nuovo.replace("[!-POSIZX]", posizX);
+nuovo= nuovo.replace("[!-TABELLA]", tabella);
+nuovo= nuovo.replace("[!-PILOTI]", piloti);
+
+//operazioni finali---------------------------------------------
+if(errori != ""){alert(errori);}
+document.getElementById("file").innerText = nuovo;
+document.getElementById("form").style.display= "none";
+document.getElementById("file").style.display= "inline";
+alert("Copia questo testo in un file e dai al file estensione html");
+}
+</script>
+</head>
+<body>
+<div id="form">
+<h3 style="color:red">Inserire i dati di una competizione</h3>
+<pre>Competizione       </pre><input type="text" id="competizione"> (es. F1)<br>
+<pre>Anno               </pre><input type="number" style="width:100px" id="anno" ><br>
+<pre>Punti per vittoria </pre><input type="text" style="width:80px" id="ppv"> (non strettamente necessario)<br>
+<pre>Path icona         </pre><input type="text"  id="ico"> (non strettamente necessario)<br>
+<pre>Tutti gp (uno per riga) </pre><textArea id="tuttigp" style = "width:400px; height:200px"></textArea><br><br>
+<label>Inserire per ogni riga: nome pilota;  colore;   punti (<b>punti, separati da spazio</b>)</label><br>
+<label>Separare nome pilota, colore e punti con <b>punto e virgola</b> (es.: LECLERC C.;red;25 18 26 10)</label><br>
+<pre>Piloti</pre>
+<textArea id="pilotis" style = "width:400px; height:300px" ></TextArea><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button onclick="crea()" style="width:220px; height:70px; background-color:green; font-size:20px;border-radius:20px" >C R E A</button>
+</div>
+
+<div id="file" style= "display:none" ><br>
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;&lt;head&gt;<br>
+&lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;<br>
+   &lt;title&gt;[!-TIT] in progress [!-ANNO] &lt;/title&gt;<br>
+   &lt;meta charset="UTF-8"&gt; <br>
+   &lt;meta name="author" content="Huunim"&gt;<br>
+   [!-ICON]<br>
+   &lt;script&gt;<br>
+    //----------posiz piloti<br>
+     <br>
+     var posizX=[0,[!-POSIZX]];<br>
+<br>
+   //-----------------------    <br>
+     <br>
+     var WSchermo=1366;<br>
+     var velo =50;<br>
+     var pixMov =6;<br>
+     var dopoGp=1;<br>
+     var tutti=[]; <br>
+     var corseFatte = 0; <br>
+     var ultimoId=0;<br>
+     var PAUSA=false;<br>
+     var v25esimo=1;   <br>
+     var tuttiGp=['',[!-TUTTIGP]];<br>
+<br>
+    function scomponiTabella(){<br>
+    tutti =document.getElementById("tabella").innerText.split("|");<br>
+    for(i=1; i&lt; tutti.length; i++){<br>
+        if(tutti[i].indexOf("*") &gt; -1){ corseFatte = i-2; break;}<br>
+     }<br>
+    let step = corseFatte+2;<br>
+    for(i=1; i&lt; tutti.length; i += step){     <br>
+       ultimoId++;<br>
+    }       <br>
+    WSchermo= screen.width;<br>
+    <br>
+}<br>
+<br>
+    function primogp(){<br>
+          document.getElementById("qualeGp").innerText = tuttiGp[dopoGp];<br>
+          document.getElementById("start").disabled= true;<br>
+          startOk();<br>
+        }<br>
+<br>
+    function startOk(){<br>
+     <br>
+     for(i=1; i &lt;= ultimoId; i++){<br>
+        let punti = tutti[(i-1)*(corseFatte+2)+1 + dopoGp];<br>
+        punti = (punti*pixMov)/[!-PUNTI];<br>
+        posizX[i] = punti + posizX[i];     <br>
+        document.getElementById("pil_" +i).style.left = posizX[i]+"px";<br>
+     }   <br>
+     <br>
+       v25esimo++;<br>
+       allungaPista();<br>
+     <br>
+     if( v25esimo &lt; [!-PUNTI2]){              <br>
+              setTimeout(startOk, velo);<br>
+           }else{<br>
+       // prossimo gp<br>
+        <br>
+           v25esimo=1;<br>
+           dopoGp++;<br>
+           if(dopoGp &gt; corseFatte){ <br>
+             if(document.getElementById("opzOrdina").checked){ordina();}<br>
+             document.getElementById("b_pausa").disabled =true;<br>
+             return;} <br>
+           <br>
+           if(document.getElementById("opzOrdina").checked){ordina();}<br>
+           if(!PAUSA){<br>
+              document.getElementById("qualeGp").innerText = tuttiGp[dopoGp];<br>
+              setTimeout(startOk, 200);<br>
+              }<br>
+       }     <br>
+    }<br>
+<br>
+    function ordina(){<br>
+       let possibili_Y=[[!-POSSIBILI_Y]];<br>
+       let el;<br>
+       let conto=0;<br>
+       for(i=1; i&lt; posizX.length; i++){<br>
+          el= posizX[i];<br>
+          for(j =1;j&lt;posizX.length; j++){<br>
+             if(i != j){<br>
+              if(posizX[j] &gt; el){conto++;} <br>
+              else if(posizX[j] == el && j &lt; i){conto++;} <br>
+            }<br>
+          }<br>
+         document.getElementById("pil_" + i).style.top = possibili_Y[conto]+"px";<br>
+         conto=0;<br>
+       }<br>
+    }<br>
+<br>
+function allungaPista(){<br>
+     let maxo = Math.max.apply(Math, posizX);     <br>
+     maxo = Math.ceil(maxo);<br>
+     maxo += 100;<br>
+     document.getElementById("Campo").style.width =maxo+"px";<br>
+     if(maxo &gt; WSchermo){ <br>
+        maxo = maxo - WSchermo<br>
+        window.scrollBy(maxo, 0);<br>
+        maxo = maxo  + 300;<br>
+        document.getElementById("qualeGp").style.left= maxo + "px";<br>
+        maxo = maxo - 90;<br>
+        document.getElementById("buttonsLine").style.left= maxo + "px";<br>
+    }<br>
+}<br>
+<br>
+function cambioVel(){<br>
+  velo = document.getElementById("slider").value;<br>
+<br>
+}<br>
+<br>
+function pausa(){<br>
+    PAUSA = !PAUSA;<br>
+    if(PAUSA == false){ <br>
+       document.getElementById("qualeGp").innerText = tuttiGp[dopoGp];<br>
+       startOk(); }<br>
+<br>
+}<br>
+<br>
+   &lt;/script&gt;<br>
+   &lt;style&gt;<br>
+    <br>
+    .immagPiloti{position:absolute; width:90px; height:20px; font-size:10px; border: solid 1px; border-radius: 4px 15px 15px 4px; margin: 2px;}<br>
+    #Campo{position: Absolute; left: 1px; top: 30px; width: 200px; height: 500px; background-color: RGB(150, 155, 165); border: solid 1px; }<br>
+    #start{position: Absolute; left: 1px; top: 1px; width: 60px; height: 28px; background-color: RGB(238, 33, 33); border-radius: 10px; font-size: 12px; color: RGB(33, 238, 238); }<br>
+#buttonsLine{position: Absolute; left: 110px; top: 1px; width: 600px; height: 22px;}<br>
+#tabella{position: absolute; top: 1px; left: 1px; width: 100px;display: none;}<br>
+#qualeGp{position:absolute; top:210px; left: 500px; font-size: 30px;font-family:serif;opacity: 0.5; color:red;}<br>
+<br>
+   &lt;/style&gt;<br>
+  &lt;/head&gt;<br>
+<br>
+  &lt;body onload="scomponiTabella()"&gt;<br>
+    &lt;p id="tabella"&gt;<br>
+[!-TABELLA]<br>
+    &lt;/p&gt;<br>
+<br>
+    &lt;button id="start"  onclick="primogp()"&gt;START&lt;/button&gt;<br>
+  &lt;div id="buttonsLine" &gt;<br>
+    &lt;input type="checkbox" id="opzOrdina"&gt;<br>
+    &lt;label style="font-size: 12px;"&gt;Ordina dopo ogni gp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cambia velocit&agrave; &lt;/label&gt;<br>
+    &lt;input type="range" id="slider" min="20" max="200" value="50" onInput="cambioVel()"&gt;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&lt;button id="b_pausa" onclick="pausa()" style ="height:20px; background-color:orange" &gt;Pausa&lt;/button&gt;<br>
+  &lt;/div&gt;<br>
+    &lt;div id="Campo"&gt;<br>
+                               &lt;label id="qualeGp"&gt;&lt;/label&gt;<br>
+      [!-PILOTI]      <br>
+<br>
+    &lt;/div&gt;     <br>
+  <br>
+ <br>
+&lt;/body&gt;&lt;/html&gt;
+</div>
+</body>
+</html>
