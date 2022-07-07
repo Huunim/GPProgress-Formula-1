@@ -2,7 +2,7 @@
 Mostra l' evoluzione delle classifiche di F1 e MotoGp dinamicamente in puro javascript.
 E' possibile aggiungere i punti dopo ogni gp manualmente, modificando l' elemento **'tabella'** nel sorgente della pagina.
 
->es .: 1 | VERSTAPPEN Max | 0 | 25 | 0 | 34 | 26 | 25 | 15 | * 1 *
+>es .:   1 | VERSTAPPEN Max | 0 | 25 | 0 | 34 | 26 | 25 | 15 | * 1 *
 >
 >diventa 1 | VERSTAPPEN Max | 0 | 25 | 0 | 34 | 26 | 25 | 15 | 25 | * 1 *
 
