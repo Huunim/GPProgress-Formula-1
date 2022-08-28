@@ -1,4 +1,4 @@
-# GPProgress
+# GPProgress Formula 1
 Mostra l' evoluzione delle classifiche di F1 e MotoGp dinamicamente in puro javascript.
 E' possibile aggiungere i punti dopo ogni gp manualmente, modificando l' elemento **'tabella'** nel sorgente della pagina.
 
