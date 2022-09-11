@@ -7,9 +7,9 @@
    <meta name="author" content="Huunim">
    <link rel="icon" sizes="72x72" href="https://css.motogp.com/w2015/img/icons/motogp_72x72.png?version=1654166925">
    <script>
-    //----------posiz piloti
+    //----------posiz piloti (aggiungere in caso..)+++
      
-     var posizX=[0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0];
+     var posizX=[0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0];
 
    //-----------------------    
      
@@ -75,7 +75,8 @@
     }
 
     function ordina(){
-       let possibili_Y=[10,30,50,70,90,110,130,150,170,190,210,230,250,270,290,310,330,350,370,390,410,430,450,470];
+            //  aggiungere in caso +++
+       let possibili_Y=[10,30,50,70,90,110,130,150,170,190,210,230,250,270,290,310,330,350,370,390,410,430,450,470,490];
        let el;
        let conto=0;
        for(i=1; i< posizX.length; i++){
@@ -123,7 +124,7 @@ function pausa(){
    <style>
     
     .immagPiloti{position:absolute; width:90px; height:20px; font-size:10px; border: solid 1px; border-radius: 4px 15px 15px 4px; margin: 2px;}
-    #Campo{position: Absolute; left: 1px; top: 30px; width: 1220px; height: 500px; background-color: RGB(150, 155, 165); border: solid 1px; }
+    #Campo{position: Absolute; left: 1px; top: 30px; width: 1220px; height: 530px; background-color: RGB(150, 155, 165); border: solid 1px; }
     #start{position: Absolute; left: 1px; top: 1px; width: 60px; height: 28px; background-color: RGB(238, 33, 33); border-radius: 10px; font-size: 12px; color: RGB(33, 238, 238); }
 #buttonsLine{position: Absolute; left: 110px; top: 1px; width: 600px; height: 22px;}
 #tabella{position: absolute; top: 1px; left: 1px; width: 100px;display: none;}
@@ -134,30 +135,31 @@ function pausa(){
 
   <body onload="scomponiTabella()">
     <p id="tabella">
-1|DOVIZIOSO Andrea|2|0|0|1|5|0|0|0|0|2|0|0|1|*1*
-2|ESPARGARO Aleix|13|7|25|5|16|16|16|16|11|13|13|7|10|*2*
-3|MARQUEZ Alex|0|3|1|0|9|3|2|2|6|0|1|0|2|*3*
-4|BAGNAIA Francesco|0|1|11|11|8|25|0|25|0|0|25|25|25|*4*
-5|BASTIANINI Enea|25|5|6|25|0|8|25|0|0|6|5|13|0|*5*
-6|BINDER Brad|20|8|10|4|0|6|8|9|8|9|11|5|9|*6*
-7|BEZZECCHI Marco|0|0|7|0|1|7|4|11|0|5|20|6|7|*7*
-8|BINDER Darryn|0|6|0|0|0|0|0|0|4|0|0|0|0|*8*
-9|DI GIANNANTONIO Fabio|0|0|0|0|0|0|3|5|0|8|2|0|5|*9*
-10|MIR Joan|10|10|13|13|0|10|0|0|13|0|8|0|0|*10*
-11|MARINI Luca|3|2|5|0|4|0|7|10|10|11|0|4|13|*11*
-12|MARTIN Jorge|0|0|20|8|0|0|0|3|20|10|9|11|6|*12*
-13|MARQUEZ Marc|11|0|0|10|10|13|10|6|0|0|0|0|0|*13*
-14|MILLER Jack|0|13|2|16|0|11|20|1|2|16|10|16|16|*14*
-15|MORBIDELLI Franco|5|9|0|0|3|1|1|0|3|3|0|1|0|*15*
-16|NAKAGAMI Takaaki|6|0|4|2|0|9|9|8|0|0|4|3|0|*16*
-17|OLIVEIRA Miguel|0|25|3|0|11|4|0|7|7|7|7|10|4|*17*
-18|ESPARGARO Pol|16|4|0|3|7|5|5|0|0|0|0|2|0|*18*
-19|QUARTARARO Fabio|7|20|8|9|25|20|13|20|25|25|0|8|20|*19*
-20|RINS Alex|9|11|16|20|13|0|0|0|0|0|6|9|8|*20*
-21|VIÑALES Maverick|4|0|9|6|6|2|6|4|9|0|16|20|3|*21*
-22|ZARCO Johann|8|16|0|7|20|0|11|13|16|20|3|0|11|*22*
-23|GARDNER Remy|1|0|0|0|2|0|0|0|5|1|0|0|0|*23*
-24|FERNANDEZ Raul|0|0|0|0|0|0|0|0|1|4|0|0|0|*24*
+1|DOVIZIOSO Andrea|2|0|0|1|5|0|0|0|0|2|0|0|1|4|*1*
+2|ESPARGARO Aleix|13|7|25|5|16|16|16|16|11|13|13|7|10|10|*2*
+3|MARQUEZ Alex|0|3|1|0|9|3|2|2|6|0|1|0|2|6|*3*
+4|BAGNAIA Francesco|0|1|11|11|8|25|0|25|0|0|25|25|25|25|*4*
+5|BASTIANINI Enea|25|5|6|25|0|8|25|0|0|6|5|13|0|20|*5*
+6|BINDER Brad|20|8|10|4|0|6|8|9|8|9|11|5|9|8|*6*
+7|BEZZECCHI Marco|0|0|7|0|1|7|4|11|0|5|20|6|7|0|*7*
+8|BINDER Darryn|0|6|0|0|0|0|0|0|4|0|0|0|0|0|*8*
+9|DI GIANNANTONIO Fabio|0|0|0|0|0|0|3|5|0|8|2|0|5|0|*9*
+10|MIR Joan|10|10|13|13|0|10|0|0|13|0|8|0|0|0|*10*
+11|MARINI Luca|3|2|5|0|4|0|7|10|10|11|0|4|13|13|*11*
+12|MARTIN Jorge|0|0|20|8|0|0|0|3|20|10|9|11|6|7|*12*
+13|MARQUEZ Marc|11|0|0|10|10|13|10|6|0|0|0|0|0|0|*13*
+14|MILLER Jack|0|13|2|16|0|11|20|1|2|16|10|16|16|0|*14*
+15|MORBIDELLI Franco|5|9|0|0|3|1|1|0|3|3|0|1|0|0|*15*
+16|NAKAGAMI Takaaki|6|0|4|2|0|9|9|8|0|0|4|3|0|1|*16*
+17|OLIVEIRA Miguel|0|25|3|0|11|4|0|7|7|7|7|10|4|5|*17*
+18|ESPARGARO Pol|16|4|0|3|7|5|5|0|0|0|0|2|0|0|*18*
+19|QUARTARARO Fabio|7|20|8|9|25|20|13|20|25|25|0|8|20|11|*19*
+20|RINS Alex|9|11|16|20|13|0|0|0|0|0|6|9|8|9|*20*
+21|VIÑALES Maverick|4|0|9|6|6|2|6|4|9|0|16|20|3|16|*21*
+22|ZARCO Johann|8|16|0|7|20|0|11|13|16|20|3|0|11|0|*22*
+23|GARDNER Remy|1|0|0|0|2|0|0|0|5|1|0|0|0|0|*23*
+24|FERNANDEZ Raul|0|0|0|0|0|0|0|0|1|4|0|0|0|3|*24*
+25|BRADL Stefan|0|0|0|0|0|0|0|0|0|0|0|0|0|2|*25*
     </p>
 
     <button id="start" onclick="primogp()">START</button>
@@ -193,7 +195,7 @@ function pausa(){
       <div id="pil_8" style="top:430px; background-color:navy; color: white" class="immagPiloti">D. Binder</div>
       <div id="pil_23" style="top:450px; background-color:orangered" class="immagPiloti">R. Gardner</div>
       <div id="pil_24" style="top:470px; background-color:orangered" class="immagPiloti">R. Fernandez</div>
-
+      <div id="pil_25" style="top:490px; background-color:orange" class="immagPiloti">S. Bradl</div>
     </div>
    
      
