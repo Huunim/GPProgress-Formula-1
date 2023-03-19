@@ -9,7 +9,7 @@
    <script>
     //----------posiz piloti
      
-     var posizX=[0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0];
+     var posizX=[0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0];
 
    //-----------------------    
      
@@ -76,7 +76,7 @@
     }
 
     function ordina(){
-       let possibili_Y=[10,30,50,70,90,110,130,150,170,190,210,230,250,270,290,310,330,350,370,390, 410];
+       let possibili_Y=[10,30,50,70,90,110,130,150,170,190,210,230,250,270,290,310,330,350,370,390];
        let el;
        let conto=0;
        for(i=1; i< posizX.length; i++){
@@ -135,27 +135,26 @@ function pausa(){
 
   <body onload="scomponiTabella()">
     <p id="tabella">
-1|VERSTAPPEN Max|25|*1*
-2|LECLERC Charles|0|*2*
-3|PEREZ Sergio|18|*3*
-4|RUSSEL George|6|*4*
-5|SAINZ Carlos|12|*5*
-6|HAMILTON Lewis|10|*6*
-7|NORRIS Lando|0|*7*
-8|BOTTAS Valtteri|4|*8*
-9|OCON Esteban|0|*9*
-10|MAGNUSSEN Kevin|0|*10*
-11|HULKENBERG Nico|0|*11*
-12|TSUNODA Yuki|0|*12*
-13|ALONSO Fernando|15|*13*
-14|GASLY Pierre|2|*14*
-15|PIASTRI Oscar|0|*15*
-16|ALBON Alexander|1|*16*
-17|STROLL Lance|8|*17*
-18|ZHOU Guanyu|0|*18*
-19|SARGEANT Logan|0|*19*
-20|DE VRIES Nyck|0|*20*
-21|DRUGOVICH Felipe|0|*21*
+1|VERSTAPPEN Max|25|19|*1*
+2|LECLERC Charles|0|6|*2*
+3|PEREZ Sergio|18|25|*3*
+4|RUSSEL George|6|15|*4*
+5|SAINZ Carlos|12|8|*5*
+6|HAMILTON Lewis|10|10|*6*
+7|NORRIS Lando|0|0|*7*
+8|BOTTAS Valtteri|4|0|*8*
+9|OCON Esteban|0|4|*9*
+10|MAGNUSSEN Kevin|0|1|*10*
+11|HULKENBERG Nico|0|0|*11*
+12|TSUNODA Yuki|0|0|*12*
+13|ALONSO Fernando|15|12|*13*
+14|GASLY Pierre|2|2|*14*
+15|PIASTRI Oscar|0|0|*15*
+16|ALBON Alexander|1|0|*16*
+17|STROLL Lance|8|0|*17*
+18|ZHOU Guanyu|0|0|*18*
+19|SARGEANT Logan|0|0|*19*
+20|DE VRIES Nyck|0|0|*20*
     </p>
 
     <button id="start"  onclick="primogp()">START</button>
@@ -187,7 +186,6 @@ function pausa(){
      
       <div id="pil_16" style="top:350px; background-color:mediumblue" class="immagPiloti">A. Albon</div>
       <div id="pil_18" style="top:370px; background-color:crimson" class="immagPiloti">G. Zhou</div>
-      <div id="pil_21" style="top:410px; background-color: mediumaquamarine" class="immagPiloti">F. Drogovich</div>
       <div id="pil_20" style="top:390px; background-color: ivory" class="immagPiloti">N. De Vries</div>
 
     </div>     
