@@ -22,7 +22,7 @@
      var ultimoId=0;
      var PAUSA=false;
      var v25esimo=1;   // 25esimo? punto di ogni gp
-     var tuttiGp=["","BAHRAIN","ARABIA","AUSTRALIA","AZERBAIJAN","MIAMI","IMOLA", "MONACO","SPAGNA","CANADA","AUSTRIA","GR. BRETAGNA","UNGHERIA","BELGIO","OLANDA","MONZA","SINGAPORE","GIAPPONE","AUSTIN","MESSICO","BRASILE","LAS VEGAS", "ABU DAHBI"];
+     var tuttiGp=["","BAHRAIN","ARABIA","AUSTRALIA","AZERBAIJAN","MIAMI", "MONACO","SPAGNA","CANADA","AUSTRIA","GR. BRETAGNA","UNGHERIA","BELGIO","OLANDA","MONZA","SINGAPORE","GIAPPONE","AUSTIN","MESSICO","BRASILE","LAS VEGAS", "ABU DAHBI"];
 
     function scomponiTabella(){
     tutti =document.getElementById("tabella").innerText.split("|");
@@ -135,26 +135,26 @@ function pausa(){
 
   <body onload="scomponiTabella()">
     <p id="tabella">
-1|VERSTAPPEN Max|25|19|25|24|*1*
-2|LECLERC Charles|0|6|0|22|*2*
-3|PEREZ Sergio|18|25|11|33|*3*
-4|RUSSEL George|6|12|0|10|*4*
-5|SAINZ Carlos|12|8|0|14|*5*
-6|HAMILTON Lewis|10|10|18|10|*6*
-7|NORRIS Lando|0|0|8|2|*7*
-8|BOTTAS Valtteri|4|0|0|0|*8*
-9|OCON Esteban|0|4|0|0|*9*
-10|MAGNUSSEN Kevin|0|1|0|0|*10*
-11|HULKENBERG Nico|0|0|6|0|*11*
-12|TSUNODA Yuki|0|0|1|1|*12*
-13|ALONSO Fernando|15|15|15|15|*13*
-14|GASLY Pierre|2|2|0|0|*14*
-15|PIASTRI Oscar|0|0|4|0|*15*
-16|ALBON Alexander|1|0|0|0|*16*
-17|STROLL Lance|8|0|12|7|*17*
-18|ZHOU Guanyu|0|0|2|0|*18*
-19|SARGEANT Logan|0|0|0|0|*19*
-20|DE VRIES Nyck|0|0|0|0|*20*
+1|VERSTAPPEN Max|25|19|25|24|26|25|*1*
+2|LECLERC Charles|0|6|0|22|6|8|*2*
+3|PEREZ Sergio|18|25|11|33|18|0|*3*
+4|RUSSEL George|6|12|0|10|12|10|*4*
+5|SAINZ Carlos|12|8|0|14|10|4|*5*
+6|HAMILTON Lewis|10|10|18|10|8|13|*6*
+7|NORRIS Lando|0|0|8|2|0|2|*7*
+8|BOTTAS Valtteri|4|0|0|0|0|0|*8*
+9|OCON Esteban|0|4|0|0|2|15|*9*
+10|MAGNUSSEN Kevin|0|1|0|0|1|0|*10*
+11|HULKENBERG Nico|0|0|6|0|0|0|*11*
+12|TSUNODA Yuki|0|0|1|1|0|0|*12*
+13|ALONSO Fernando|15|15|15|15|15|18|*13*
+14|GASLY Pierre|2|2|0|0|4|6|*14*
+15|PIASTRI Oscar|0|0|4|0|0|1|*15*
+16|ALBON Alexander|1|0|0|0|0|0|*16*
+17|STROLL Lance|8|0|12|7|0|0|*17*
+18|ZHOU Guanyu|0|0|2|0|0|0|*18*
+19|SARGEANT Logan|0|0|0|0|0|0|*19*
+20|DE VRIES Nyck|0|0|0|0|0|0|*20*
     </p>
 
     <button id="start"  onclick="primogp()">START</button>
@@ -191,4 +191,3 @@ function pausa(){
   
  
 </body></html>
-        
