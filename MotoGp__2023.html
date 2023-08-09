@@ -22,7 +22,7 @@
      var ultimoId=0;
      var v25esimo=1;   // 25esimo punto di ogni gp
      var PAUSA=false;
-     var tuttiGp=["","PORTOGALLO","PORTOGALLO","ARGENTINA","ARGENTINA","AMERICA","AMERICA","JEREZ","JEREZ","FRANCIA","FRANCIA","MUGELLO","MUGELLO","GERMANIA","GERMANIA","OLANDA","OLANDA","KAZAKHSTAN","KAZAKHSTAN","G.BRETAGNA","G.BRETAGNA","AUSTRIA","AUSTRIA","BARCELLONA","BARCELLONA","MISANO","MISANO","INDIA","INDIA","GIAPPONE","GIAPPONE","INDONESIA","INDONESIA","AUSTRALIA","AUSTRALIA","THAILANDIA","THAILANDIA","MALESIA","MALESIA","QATAR","QATAR","VALENCIA","VALENCIA"];
+     var tuttiGp=["","PORTOGALLO","PORTOGALLO","ARGENTINA","ARGENTINA","AMERICA","AMERICA","JEREZ","JEREZ","FRANCIA","FRANCIA","MUGELLO","MUGELLO","GERMANIA","GERMANIA","OLANDA","OLANDA","G.BRETAGNA","G.BRETAGNA","AUSTRIA","AUSTRIA","BARCELLONA","BARCELLONA","MISANO","MISANO","INDIA","INDIA","GIAPPONE","GIAPPONE","INDONESIA","INDONESIA","AUSTRALIA","AUSTRALIA","THAILANDIA","THAILANDIA","MALESIA","MALESIA","QATAR","QATAR","VALENCIA","VALENCIA"];
 
     function scomponiTabella(){
     tutti =document.getElementById("tabella").innerText.split("|");
@@ -46,7 +46,7 @@
     function startOk(){
       for(i=1; i <= ultimoId; i++){
         let punti = tutti[(i-1)*(corseFatte+2)+1 + dopoGp];
-        punti = (punti*pixMov)/26;
+        punti = (punti*pixMov)/25;
         posizX[i] = punti + posizX[i];     
         document.getElementById("pil_" +i).style.left = posizX[i]+"px";
      }   
@@ -119,6 +119,7 @@ function pausa(){
 
 }
 
+
    </script>
    <style>
     
@@ -134,32 +135,32 @@ function pausa(){
 
   <body onload="scomponiTabella()">
     <p id="tabella">
-1|BAGNAIA Francesco|12|25|4|0|12|0|9|25|7|0|12|25|9|20|*1*
-2|ZARCO Johann|2|13|0|20|0|9|2|0|4|16|6|16|5|16|*2*
-3|MARINI Luca|0|0|7|8|3|20|0|10|6|0|5|13|6|11|*3*
-4|VIÑALES Maverick|5|20|3|4|0|13|3|0|1|0|0|4|0|0|*4*
-5|QUARTARARO Fabio|0|8|1|9|0|16|0|6|0|9|0|5|0|3|*5*
-6|MORBIDELLI Franco|0|0|6|13|0|8|0|5|0|6|0|6|0|4|*6*
-7|BASTIANINI Enea|0|0|0|0|0|0|0|0|0|0|1|7|0|8|*7*
-8|FERNANDEZ Raul|0|0|0|2|0|0|0|1|0|0|0|0|0|1|*8*
-9|NAKAGAMI Takaaki|0|4|0|3|0|0|0|7|0|7|0|3|0|2|*9*
-10|BINDER Brad|0|10|12|0|5|3|12|20|9|10|0|11|4|0|*10*
-11|MIR Joan|0|5|0|0|0|0|0|0|0|0|0|0|0|0|*11*
-12|MARQUEZ Alex|1|11|5|16|0|0|0|8|0|0|0|0|2|9|*12*
-13|MARQUEZ Marc|7|0|0|0|0|0|0|0|5|0|3|0|0|0|*13*
-14|ESPARGARO Aleix|4|7|0|1|6|0|0|11|2|11|2|10|1|1|*14*
-15|FERNANDEZ Augusto|0|3|0|5|0|6|0|3|0|13|0|1|0|5|*15*
-16|RINS Alex|0|6|0|7|9|25|0|0|0|0|0|0|0|0|*16*
-17|MILLER Jack|6|9|0|10|1|0|7|16|0|0|4|9|7|10|*17*
-18|ESPARGARO Pol|0|0|0|0|0|0|0|0|0|0|0|0|0|0|*18*
-19|BEZZECCHI Marco|0|16|9|25|4|10|1|0|3|25|9|8|3|13|*19*
-20|DI GIANNANTONIO Fabio|0|0|0|6|0|7|0|4|0|8|0|2|0|7|*20*
-21|OLIVEIRA Miguel|3|0|0|0|2|11|5|0|0|0|0|0|0|6|*21*
-22|MARTIN Jorge|9|0|2|11|7|0|6|13|12|20|7|20|12|25|*22*
-23|PIRRO Emanuele|0|0|0|0|0|5|0|0|0|0|0|0|0|0|*23*
-24|FOLGER Jonas|0|0|0|0|0|4|0|0|0|3|0|0|0|0|*24*
-25|PEDROSA Daniel|0|0|0|0|0|0|4|9|0|0|0|0|0|0|*25*
-26|BRADL Stefan|0|0|0|0|0|0|0|2|0|0|0|0|0|0|*26*
+1|BAGNAIA Francesco|12|25|4|0|12|0|9|25|7|0|12|25|9|20|9|25|0|20|*1*
+2|ZARCO Johann|2|13|0|20|0|9|2|0|4|16|6|16|5|16|0|0|6|7|*2*
+3|MARINI Luca|0|0|7|8|3|20|0|10|6|0|5|13|6|11|0|9|0|9|*3*
+4|VIÑALES Maverick|5|20|3|4|0|13|3|0|1|0|0|4|0|0|3|0|7|11|*4*
+5|QUARTARARO Fabio|0|8|1|9|0|16|0|6|0|9|0|5|0|3|7|0|0|1|*5*
+6|MORBIDELLI Franco|0|0|6|13|0|8|0|5|0|6|0|6|0|4|0|7|0|2|*6*
+7|BASTIANINI Enea|0|0|0|0|0|0|0|0|0|0|1|7|0|8|2|0|0|0|*7*
+8|FERNANDEZ Raul|0|0|0|2|0|0|0|1|0|0|0|0|0|1|0|4|0|6|*8*
+9|NAKAGAMI Takaaki|0|4|0|3|0|0|0|7|0|7|0|3|0|2|0|8|0|0|*9*
+10|BINDER Brad|0|10|12|0|5|3|12|20|9|10|0|11|4|0|5|13|1|16|*10*
+11|MIR Joan|0|5|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|*11*
+12|MARQUEZ Alex|1|11|5|16|0|0|0|8|0|0|0|0|2|9|1|10|12|0|*12*
+13|MARQUEZ Marc|7|0|0|0|0|0|0|0|5|0|3|0|0|0|0|0|0|0|*13*
+14|ESPARGARO Aleix|4|7|0|1|6|0|0|11|2|11|2|10|1|1|6|16|5|25|*14*
+15|FERNANDEZ Augusto|0|3|0|5|0|6|0|3|0|13|0|1|0|5|0|6|2|5|*15*
+16|RINS Alex|0|6|0|7|9|25|0|0|0|0|0|0|0|0|0|0|0|0|*16*
+17|MILLER Jack|6|9|0|10|1|0|7|16|0|0|4|9|7|10|0|0|3|8|*17*
+18|ESPARGARO Pol|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|4|*18*
+19|BEZZECCHI Marco|0|16|9|25|4|10|1|0|3|25|9|8|3|13|12|20|9|0|*19*
+20|DI GIANNANTONIO Fabio|0|0|0|6|0|7|0|4|0|8|0|2|0|7|0|0|0|3|*20*
+21|OLIVEIRA Miguel|3|0|0|0|2|11|5|0|0|0|0|0|0|6|0|0|0|13|*21*
+22|MARTIN Jorge|9|0|2|11|7|0|6|13|12|20|7|20|12|25|4|11|4|10|*22*
+23|PIRRO Emanuele|0|0|0|0|0|5|0|0|0|0|0|0|0|0|0|0|0|0|*23*
+24|FOLGER Jonas|0|0|0|0|0|4|0|0|0|3|0|0|0|0|0|2|0|0|*24*
+25|PEDROSA Daniel|0|0|0|0|0|0|4|9|0|0|0|0|0|0|0|0|0|0|*25*
+26|BRADL Stefan|0|0|0|0|0|0|0|2|0|0|0|0|0|0|0|3|0|0|*26*
     </p>
 
     <button id="start" onclick="primogp()">START</button>
@@ -173,7 +174,7 @@ function pausa(){
       <label id="qualeGp"></label>
       <div id="pil_1" style="top:10px; background-color:red" class="immagPiloti">F. Bagnaia</div>
       <div id="pil_4" style="top:30px; background-color:green" class="immagPiloti">M. Vinales</div>  
-      <div id="pil_19" style="top:50px; background-color:yellow" class="immagPiloti">Bezzecchi</div>
+      <div id="pil_19" style="top:50px; background-color:yellow" class="immagPiloti">M. Bezzecchi</div>
       <div id="pil_2" style="top:70px; background-color:violet" class="immagPiloti">J. Zarco</div> 
       <div id="pil_17" style="top:90px; background-color:brown" class="immagPiloti">J. Miller</div> 
       <div id="pil_12" style="top:110px; background-color:powderblue" class="immagPiloti">A. Marquez</div>
@@ -197,6 +198,8 @@ function pausa(){
       <div id="pil_24" style="top:470px; background-color:tomato" class="immagPiloti">J. Folger</div>
       <div id="pil_25" style="top:490px; background-color:brown" class="immagPiloti">D. Pedrosa</div>
       <div id="pil_26" style="top:510px; background-color:white; color:blue" class="immagPiloti">S. Bradl</div>
-    </div>   
+    </div>
+   
+     
  
 </body></html>
