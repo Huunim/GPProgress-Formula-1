@@ -9,20 +9,20 @@
    <script>
     //----------posiz piloti
      
-     var posizX=[0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0];
+     var posizX=[0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0];
 
    //-----------------------    
      
      var WSchermo=1366;
      var velo =50;
-     var pixMov =6;  // indica di qti pix devono muovere per ogni punto
+     var pixMov =3;  // indica di qti pix devono muovere per ogni punto
      var dopoGp=1;   
      var tutti=[];   // tabella
      var corseFatte = 0; // cambiare dopo ogni gp
      var ultimoId=0;
      var PAUSA=false;
      var v25esimo=1;   // 25esimo? punto di ogni gp
-     var tuttiGp=["","BAHRAIN","ARABIA","AUSTRALIA","AZERBAIJAN","MIAMI", "MONACO","SPAGNA","CANADA","AUSTRIA","GR. BRETAGNA","UNGHERIA","BELGIO","OLANDA","MONZA","SINGAPORE","GIAPPONE","AUSTIN","MESSICO","BRASILE","LAS VEGAS", "ABU DAHBI"];
+     var tuttiGp=["","BAHRAIN","ARABIA","AUSTRALIA","AZERBAIJAN","MIAMI", "MONACO","SPAGNA","CANADA","AUSTRIA","GR. BRETAGNA","UNGHERIA","BELGIO","OLANDA","MONZA","SINGAPORE","GIAPPONE","QATAR","AUSTIN","MESSICO","BRASILE","LAS VEGAS", "ABU DAHBI"];
 
     function scomponiTabella(){
     tutti =document.getElementById("tabella").innerText.split("|");
@@ -76,7 +76,7 @@
     }
 
     function ordina(){
-       let possibili_Y=[10,30,50,70,90,110,130,150,170,190,210,230,250,270,290,310,330,350,370,390];
+       let possibili_Y=[10,30,50,70,90,110,130,150,170,190,210,230,250,270,290,310,330,350,370,390,410];
        let el;
        let conto=0;
        for(i=1; i< posizX.length; i++){
@@ -135,26 +135,27 @@ function pausa(){
 
   <body onload="scomponiTabella()">
     <p id="tabella">
-1|VERSTAPPEN Max|25|19|25|24|26|25|26|25|34|26|26|33|25|25|*1*
-2|LECLERC Charles|0|6|0|22|6|8|0|12|18|2|6|19|0|12|*2*
-3|PEREZ Sergio|18|25|11|33|18|0|12|9|22|8|15|18|12|18|*3*
-4|RUSSEL George|6|12|0|10|12|10|15|0|7|10|8|9|0|10|*4*
-5|SAINZ Carlos|12|8|0|14|10|4|10|10|14|1|4|0|10|15|*5*
-6|HAMILTON Lewis|10|10|18|10|8|13|18|15|4|15|12|15|8|8|*6*
-7|NORRIS Lando|0|0|8|2|0|2|0|0|12|18|18|9|6|4|*7*
-8|BOTTAS Valtteri|4|0|0|0|0|0|0|1|0|0|0|0|0|1|*8*
-9|OCON Esteban|0|4|0|0|2|15|4|4|2|0|0|4|1|0|*9*
-10|MAGNUSSEN Kevin|0|1|0|0|1|0|0|0|0|0|0|0|0|0|*10*
-11|HULKENBERG Nico|0|0|6|0|0|0|0|0|3|0|0|0|0|0|*11*
-12|TSUNODA Yuki|0|0|1|1|0|0|0|0|0|0|0|1|0|0|*12*
-13|ALONSO Fernando|15|15|15|15|15|18|6|18|14|6|2|10|19|2|*13*
-14|GASLY Pierre|2|2|0|0|4|6|1|0|1|0|0|6|15|0|*14*
-15|PIASTRI Oscar|0|0|4|0|0|1|0|0|0|12|10|7|2|0|*15*
-16|ALBON Alexander|1|0|0|0|0|0|0|6|0|4|0|0|4|6|*16*
-17|STROLL Lance|8|0|12|7|0|0|8|2|7|0|1|2|0|0|*17*
-18|ZHOU Guanyu|0|0|2|0|0|0|2|0|0|0|0|0|0|0|*18*
-19|SARGEANT Logan|0|0|0|0|0|0|0|0|0|0|0|0|0|0|*19*
-20|RICCIARDO Dniel|0|0|0|0|0|0|0|0|0|0|0|0|0|0|*20*
+1|VERSTAPPEN Max|25|19|25|24|26|25|26|25|34|26|26|33|25|25|10|26|7|25|25|33|*1*
+2|LECLERC Charles|0|6|0|22|6|8|0|12|18|2|6|19|0|12|12|12|0|0|15|4|*2*
+3|PEREZ Sergio|18|25|11|33|18|0|12|9|22|8|15|18|12|18|4|0|0|12|0|18|*3*
+4|RUSSEL George|6|12|0|10|12|10|15|0|7|10|8|9|0|10|0|6|5|10|8|5|*4*
+5|SAINZ Carlos|12|8|0|14|10|4|10|10|14|1|4|0|10|15|25|8|3|15|12|9|*5*
+6|HAMILTON Lewis|10|10|18|10|8|13|18|15|4|15|12|15|8|8|16|10|4|0|19|6|*6*
+7|NORRIS Lando|0|0|8|2|0|2|0|0|12|18|18|9|6|4|18|18|6|18|10|26|*7*
+8|BOTTAS Valtteri|4|0|0|0|0|0|0|1|0|0|0|0|0|1|0|0|0|0|0|0|*8*
+9|OCON Esteban|0|4|0|0|2|15|4|4|2|0|0|4|1|0|0|2|0|0|1|1|*9*
+10|MAGNUSSEN Kevin|0|1|0|0|1|0|0|0|0|0|0|0|0|0|1|0|0|0|0|0|*10*
+11|HULKENBERG Nico|0|0|6|0|0|0|0|0|3|0|0|0|0|0|0|0|0|0|0|0|*11*
+12|TSUNODA Yuki|0|0|1|1|0|0|0|0|0|0|0|1|0|0|0|0|0|5|0|5|*12*
+13|ALONSO Fernando|15|15|15|15|15|18|6|18|14|6|2|10|19|2|0|4|1|0|0|15|*13*
+14|GASLY Pierre|2|2|0|0|4|6|1|0|1|0|0|6|15|0|8|1|0|8|0|6|*14*
+15|PIASTRI Oscar|0|0|4|0|0|1|0|0|0|12|10|7|2|0|6|15|8|0|4|0|*15*
+16|ALBON Alexander|1|0|0|0|0|0|0|6|0|4|0|0|4|6|0|0|2|2|2|0|*16*
+17|STROLL Lance|8|0|12|7|0|0|8|2|7|0|1|2|0|0|0|0|0|6|0|10|*17*
+18|ZHOU Guanyu|0|0|2|0|0|0|2|0|0|0|0|0|0|0|0|0|0|0|0|0|*18*
+19|SARGEANT Logan|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|0|0|*19*
+20|LAWSON Liam|0|0|0|0|0|0|0|0|0|0|0|0|0|0|2|0|0|0|0|0|*20*
+21|RICCIARDO Daniel|0|0|0|0|0|0|0|0|0|0|0|0|0|0|2|0|0|0|6|0|*20*
     </p>
 
     <button id="start"  onclick="primogp()">START</button>
@@ -176,8 +177,8 @@ function pausa(){
       <div id="pil_9" style="top:150px; background-color:dodgerblue; color:pink" class="immagPiloti">E. Ocon</div>
       <div id="pil_13" style="top:170px; background-color:mediumaquamarine" class="immagPiloti">F. Alonso</div>  
       <div id="pil_8" style="top:190px; background-color:crimson" class="immagPiloti">V. Bottas</div>      
-      <div id="pil_15" style="top:210px; background-color:gray; color:red" class="immagPiloti">N. Hulkenberg</div>
-      <div id="pil_11" style="top:230px; background-color:orange" class="immagPiloti">O. Piastri</div>
+      <div id="pil_11" style="top:210px; background-color:gray; color:red" class="immagPiloti">N. Hulkenberg</div>
+      <div id="pil_15" style="top:230px; background-color:orange" class="immagPiloti">O. Piastri</div>
       <div id="pil_10" style="top:250px; background-color:gray; color:red" class="immagPiloti">K. Magnussen</div>     
       <div id="pil_17" style="top:290px; background-color:mediumaquamarine" class="immagPiloti">L. Stroll</div>
       <div id="pil_14" style="top:270px; background-color:dodgerblue; color: pink;" class="immagPiloti">P. Gasly</div>
@@ -185,7 +186,8 @@ function pausa(){
       <div id="pil_12" style="top:330px; background-color:ivory;" class="immagPiloti">Y. Tsunoda</div>     
       <div id="pil_16" style="top:350px; background-color:mediumblue" class="immagPiloti">A. Albon</div>
       <div id="pil_18" style="top:370px; background-color:crimson" class="immagPiloti">G. Zhou</div>
-      <div id="pil_20" style="top:390px; background-color: ivory" class="immagPiloti">N. De Vries</div>
+      <div id="pil_20" style="top:390px; background-color: ivory" class="immagPiloti">L. Lawson</div>
+      <div id="pil_21" style="top:410px; background-color: ivory" class="immagPiloti">D. Ricciardo</div>
 
     </div>     
   
